@@ -13,7 +13,7 @@ const int mPin3 = 7;
 const int mPin4 = 11;
 const int enablePin3y4 = 5;
 
-// Parámetros del controlador PD
+// Parámetros del controlador PID
 const float Kp = 10, Ki = 0.01, Kd = 10;
 int P, I, D;
 
@@ -56,9 +56,9 @@ void loop() {
   D = error - ultimoError;
   ultimoError = error;
  
-  int PD = P * Kp + I * Ki + D * Kd;
-  int motorD = velocidad + PD;
-  int motorI = velocidad - PD;
+  int PID = P * Kp + I * Ki + D * Kd;
+  int motorD = velocidad + PID;
+  int motorI = velocidad - PID;
  
   if (motorD > 200) motorD = 200;
   if (motorI > 200) motorI = 200;
